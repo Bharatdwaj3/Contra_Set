@@ -33,7 +33,6 @@ spec:
           name: user
           ports:
             - containerPort: 3001
-              hostPort: 9001
               protocol: TCP
           resources: {}
       restartPolicy: Always

@@ -33,7 +33,6 @@ spec:
           name: cart
           ports:
             - containerPort: 3003
-              hostPort: 9002
               protocol: TCP
           resources: {}
       restartPolicy: Always

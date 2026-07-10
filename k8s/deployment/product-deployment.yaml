@@ -33,7 +33,6 @@ spec:
           name: product
           ports:
             - containerPort: 3002
-              hostPort: 9003
               protocol: TCP
           resources: {}
       restartPolicy: Always

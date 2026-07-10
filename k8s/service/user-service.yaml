@@ -9,10 +9,12 @@ metadata:
     io.kompose.service: user
   name: user
 spec:
+  type: NodePort
   ports:
     - name: "9001"
       port: 9001
       targetPort: 3001
+      nodePort: 30003
   selector:
     io.kompose.service: user
 status:

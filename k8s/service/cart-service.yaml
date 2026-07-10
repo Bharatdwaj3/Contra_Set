@@ -9,10 +9,12 @@ metadata:
     io.kompose.service: cart
   name: cart
 spec:
+  type: NodePort
   ports:
     - name: "9002"
       port: 9002
       targetPort: 3003
+      nodePort: 30001
   selector:
     io.kompose.service: cart
 status:

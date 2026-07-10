@@ -1,3 +1,5 @@
+name: lrn-k86
+
 
 services:
   db:
@@ -7,8 +9,9 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
     volumes:
       - mongo-data:/data/db
 
@@ -18,7 +21,7 @@ services:
     build: ./User
     image: user
     ports:
-      - "3005:3001"
+      - "9001:3001"
     command: node server.js
     depends_on:
     - db
@@ -27,7 +30,7 @@ services:
     build: ./Cart
     image: cart
     ports:
-      - "3003:3003"
+      - "9002:3003"
     command: node server.js 
     depends_on:
     - db 
@@ -36,8 +39,10 @@ services:
     build: ./Product
     image: product
     ports:
-      - "3002:3002"
+      - "9003:3002"
     command: node server.js
     depends_on: 
     - db
     
+volumes:
+  mongo-data:

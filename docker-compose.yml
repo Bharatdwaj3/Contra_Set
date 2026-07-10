@@ -1,0 +1,43 @@
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-data:/data/db
+
+
+
+  user:
+    build: ./User
+    image: user
+    ports:
+      - "3005:3001"
+    command: node server.js
+    depends_on:
+    - db
+
+  cart:
+    build: ./Cart
+    image: cart
+    ports:
+      - "3003:3003"
+    command: node server.js 
+    depends_on:
+    - db 
+
+  product:
+    build: ./Product
+    image: product
+    ports:
+      - "3002:3002"
+    command: node server.js
+    depends_on: 
+    - db
+    

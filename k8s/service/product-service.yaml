@@ -14,7 +14,7 @@ spec:
     - name: "9003"
       port: 9003
       targetPort: 3003
-      nodePort: 30003
+      nodePort: 30002
   selector:
     io.kompose.service: product
 status:

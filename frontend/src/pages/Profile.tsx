@@ -9,15 +9,25 @@ import clip4 from "../assets/clip-04.jpg";
 import profile from "../assets/profile.jpg";
 import profileg from "../assets/profileGirl.jpg";
 import { useState, useEffect, Fragment } from "react";
+
+interface User {
+  gender: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: number;
+  phone: string;
+}
+
 function Profile() {
 
+  const [user, setUser] = useState<User>({} as User);
 
-  const [user, setUser] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3001/users/", {
+      fetch("/users/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

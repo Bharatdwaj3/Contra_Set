@@ -2,14 +2,23 @@ import "../Style/profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Fragment, useState, useEffect } from "react";
 
+interface Product {
+  image: string;
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+}
+
+
 function ProductInfo() {
-  const [inputValue, setInputValue] = useState({});
+  const [inputValue, setInputValue] = useState<Product>({} as Product);
   const productID = localStorage.getItem("productID");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3002/products/${productID}`, {
+        const response = await fetch(`/products/${productID}`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -29,7 +38,7 @@ function ProductInfo() {
     const token = localStorage.getItem("token");
     if (token) {
       console.log("Add to cart");
-      fetch(`http://localhost:3003/cart/${productID}`, {
+      fetch(`/cart/${productID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

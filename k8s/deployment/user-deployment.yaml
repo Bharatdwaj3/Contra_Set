@@ -23,6 +23,9 @@ spec:
       labels:
         io.kompose.network/lrn-k86-default: "true"
         io.kompose.service: user
+
+
+
     spec:
       containers:
         - args:
@@ -35,5 +38,37 @@ spec:
             - containerPort: 3001
               protocol: TCP
           resources: {}
+
+          env:
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-secrets
+                  key: MONGO_USERNAME
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-secrets
+                  key: MONGO_PASSWORD
+            - name: MONGO_CLUSTER
+              valueFrom:
+                secretKeyRef:
+                  name: user-secrets
+                  key: MONGO_CLUSTER
+            - name: MONGO_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-secrets
+                  key: MONGO_DBNAME
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: user-secrets
+                  key: ACCESS_TOKEN
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: user-secrets
+                  key: PORT
       restartPolicy: Always
 status: {}

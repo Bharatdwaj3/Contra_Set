@@ -35,5 +35,36 @@ spec:
             - containerPort: 3003
               protocol: TCP
           resources: {}
+          env:
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: cart-secrets
+                  key: MONGO_USERNAME
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cart-secrets
+                  key: MONGO_PASSWORD
+            - name: MONGO_CLUSTER
+              valueFrom:
+                secretKeyRef:
+                  name: cart-secrets
+                  key: MONGO_CLUSTER
+            - name: MONGO_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: cart-secrets
+                  key: MONGO_DBNAME
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cart-secrets
+                  key: ACCESS_TOKEN
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: cart-secrets
+                  key: PORT
       restartPolicy: Always
 status: {}

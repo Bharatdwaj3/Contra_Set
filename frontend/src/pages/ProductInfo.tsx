@@ -18,7 +18,7 @@ function ProductInfo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/products/${productID}`, {
+        const response = await fetch(`/api/products/${productID}`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -38,7 +38,7 @@ function ProductInfo() {
     const token = localStorage.getItem("token");
     if (token) {
       console.log("Add to cart");
-      fetch(`/cart/${productID}`, {
+      fetch(`/api/cart/${productID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

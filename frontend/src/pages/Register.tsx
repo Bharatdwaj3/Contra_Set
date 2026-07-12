@@ -14,7 +14,7 @@ function Register() {
     event.preventDefault();
 
     try {
-      const response = await fetch("/users", {
+      const response = await fetch("/api/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -52,7 +52,7 @@ function Register() {
     <div className="bg-img">
       <div className="registerContent">
         <header>Register Form</header>
-        <form action="/users" method="post" onSubmit={handleSubmit}>
+        <form action="/api/users" method="post" onSubmit={handleSubmit}>
           <div className="row">
             <div className="col">
               <h6>First name</h6>

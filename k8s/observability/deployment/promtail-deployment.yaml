@@ -38,6 +38,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/promtail/config.yml
               name: promtail-claim0
+              subPath: promtail-config.yml
             - mountPath: /var/lib/docker/containers
               name: promtail-claim1
               readOnly: true
@@ -46,13 +47,13 @@ spec:
       restartPolicy: Always
       volumes:
         - name: promtail-claim0
-          persistentVolumeClaim:
-            claimName: promtail-claim0
+          configMap:
+            name: promtail-config
         - name: promtail-claim1
-          persistentVolumeClaim:
-            claimName: promtail-claim1
-            readOnly: true
+          hostPath:
+            path: /var/lib/docker/containers
         - name: promtail-claim2
-          persistentVolumeClaim:
-            claimName: promtail-claim2
+          hostPath:
+            path: /var/run/docker.sock
+            type: Socket
 status: {}

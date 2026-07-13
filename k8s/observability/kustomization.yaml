@@ -14,6 +14,9 @@ configMapGenerator:
 
 # 2. List the resources to be managed
 resources:
+  - frontend-nginx-config.yaml
+  - prometheus-data-persistentvolumeclaim.yaml
+  - grafana-data-persistentvolumeclaim.yaml
   - deployment/cadvisor-deployment.yaml
   - deployment/grafana-deployment.yaml
   - deployment/loki-deployment.yaml

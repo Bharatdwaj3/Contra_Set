@@ -25,6 +25,7 @@ spec:
         io.kompose.network/e-commerce-web-application-default: "true"
         io.kompose.service: cadvisor
     spec:
+      automountServiceAccountToken: false
       containers:
         - image: gcr.io/cadvisor/cadvisor:latest
           name: ecommerce-cadvisor
@@ -49,19 +50,16 @@ spec:
       restartPolicy: Always
       volumes:
         - name: cadvisor-claim0
-          persistentVolumeClaim:
-            claimName: cadvisor-claim0
-            readOnly: true
+          hostPath:
+            path: /
         - name: cadvisor-claim1
-          persistentVolumeClaim:
-            claimName: cadvisor-claim1
-            readOnly: true
+          hostPath:
+            path: /var/run
         - name: cadvisor-claim2
-          persistentVolumeClaim:
-            claimName: cadvisor-claim2
-            readOnly: true
+          hostPath:
+            path: /sys
         - name: cadvisor-claim3
-          persistentVolumeClaim:
-            claimName: cadvisor-claim3
-            readOnly: true
+          hostPath:
+            path: /var/lib/docker
+        
 status: {}

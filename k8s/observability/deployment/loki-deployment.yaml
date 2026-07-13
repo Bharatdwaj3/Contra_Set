@@ -40,11 +40,14 @@ spec:
           volumeMounts:
             - mountPath: /etc/loki/local-config.yml
               name: loki-claim0
+              subPath: local-config.yml
               readOnly: true
       restartPolicy: Always
       volumes:
         - name: loki-claim0
-          persistentVolumeClaim:
-            claimName: loki-claim0
-            readOnly: true
+          configMap:
+            name: loki-config-f5mbcmft44
+            items:
+              - key: loki-config.yml
+                path: local-config.yml
 status: {}
